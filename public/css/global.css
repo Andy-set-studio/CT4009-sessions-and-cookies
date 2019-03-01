@@ -13,6 +13,10 @@ hr {
   border-bottom: 1px solid #ccc;
 }
 
+p {
+  font-size: 1.3rem;
+}
+
 .wrapper {
   max-width: 30rem;
   margin: 0 auto;

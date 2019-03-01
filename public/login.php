@@ -1,23 +1,30 @@
-<?php 
-
-// DB connection gives us a $db global variable
-require_once  'includes/db-connect.php';
-
-// Grab name and comment from $_POST
-$name = filter_var($_POST['name']);
-$comment = filter_var($_POST['comment']);
-
-$sql = 'INSERT INTO comments ' .
-  '(`name`, `comment`) ' .
-  'VALUES ' .
-  '("' . $db->escape_string($name) . '", "'. $db->escape_string($comment) . '")';
-
-$result = mysqli_query($db, $sql);
-
-// If the comment was inserted, redirect to the homepage where it'll be shown
-if($result) {
-  header('Location: /');
-  die();
-}
-
-die('There was an error inserting the comment');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/lib.css" />
+  <link rel="stylesheet" href="/css/global.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <main>
+      <h1 class="heading">Login</h1>
+      <form method="POST" action="/process-login.php" class="form boilerform">
+        <div>
+          <label class="c-label" for="email">Email</label>
+          <input type="email" name="email" id="email" class="c-input-field" autocomplete="off" />
+        </div>
+        <div>
+          <label class="c-label" for="password">Password</label>
+          <input type="password" name="password" id="password" class="c-input-field" autocomplete="off" />
+        </div>
+        <div>
+          <button type="submit" class="c-button">Login</button>
+        </div>
+      </form>
+    </main>
+  </div>
+</body> 
+</html>

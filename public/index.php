@@ -1,34 +1,28 @@
 <?php 
-  $comments = [];
-  include './includes/load-comments.php';
+  $user = $_COOKIE['auth_user'];
+
+  if(!isset($user)) {
+    header('Location: /login.php');
+  }
+
+  // Decode the string back into array
+  $user = json_decode($user, true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comments</title>
+  <title>Home</title>
   <link rel="stylesheet" href="/css/lib.css" />
   <link rel="stylesheet" href="/css/global.css" />
 </head>
 <body>
   <div class="wrapper">
-    <main>
-      <h1 class="heading">Comments</h1>
-      <?php include './includes/comment-list.php'; ?>
-      <form method="POST" action="/post-comment.php" class="comment-form boilerform">
-        <div>
-          <label class="c-label" for="name">Name</label>
-          <input type="text" name="name" id="name" class="c-input-field" autocomplete="off" />
-        </div>
-        <div>
-          <label class="c-label" for="comment">Add a comment</label>
-          <textarea name="comment" id="comment" rows="5" class="c-input-field c-input-field--multiline"></textarea>
-        </div>
-        <div>
-          <button type="submit" class="c-button">Submit comment</button>
-        </div>
-      </form>
+    <main class="boilerform">
+      <h1 class="heading">Home</h1>
+      <p>Welcome, <strong><?php echo $user['name']; ?>.</strong></p>
+      <a href="/logout.php" class="c-button">Logout</a>
     </main>
   </div>
 </body> 
