@@ -11,6 +11,9 @@
   <div class="wrapper">
     <main>
       <h1 class="heading">Login</h1>
+      <?php if($_GET['authStatus'] == 'fail'): ?>
+        <p>Your username or password was wrong. Please try again.</p>
+      <?php endif; ?>
       <form method="POST" action="/process-login.php" class="form boilerform">
         <div>
           <label class="c-label" for="email">Email</label>

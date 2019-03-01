@@ -26,4 +26,8 @@ if(mysqli_num_rows($result) > 0) {
 if(isset($user)) {
   setcookie('auth_user', json_encode($user), (time() + 3600));
   header('Location: /');
+  die();
 }
+
+header('Location: /login.php?authStatus=fail');
+die();
